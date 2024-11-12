@@ -46,4 +46,4 @@ To get a local copy of this project up and running, follow these steps:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/short-and-sweet.git
+   git clone https://github.com/RajanSita/URL.git
