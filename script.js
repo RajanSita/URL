@@ -249,9 +249,40 @@ function displayResult(shortUrl, longUrl) {
 function generateQRCode(url) {
     // Clear previous QR code
     qrCodeDiv.innerHTML = '';
-    
+
+    // Create a canvas element for QR code
+    const canvas = document.createElement('canvas');
+    qrCodeDiv.appendChild(canvas);
+
+    // Dynamically load QRCode library if not loaded
+    if (typeof QRCode === 'undefined' || typeof QRCode.toCanvas !== 'function') {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js';
+        script.onload = function () {
+            QRCode.toCanvas(canvas, url, {
+                width: 200,
+                margin: 2,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                },
+                errorCorrectionLevel: 'M'
+            }, function (error) {
+                if (error) {
+                    console.error('QR Code generation failed:', error);
+                    qrCodeDiv.innerHTML = '<p style="color: #ef4444;">Failed to generate QR code</p>';
+                }
+            });
+        };
+        script.onerror = function () {
+            qrCodeDiv.innerHTML = '<p style="color: #ef4444;">Failed to load QR Code library</p>';
+        };
+        document.head.appendChild(script);
+        return;
+    }
+
     // Generate new QR code
-    QRCode.toCanvas(qrCodeDiv, url, {
+    QRCode.toCanvas(canvas, url, {
         width: 200,
         margin: 2,
         color: {
@@ -411,7 +442,6 @@ function animateStatsOnScroll() {
             animateNumber(stat, 0, target, 2000);
         });
         
-        // Remove listener after animation
         window.removeEventListener('scroll', animateStatsOnScroll);
     }
 }
@@ -436,7 +466,7 @@ function animateNumber(element, start, end, duration) {
     requestAnimationFrame(update);
 }
 
-// ===== SOUND EFFECTS (OPTIONAL) =====
+// ===== SOUND EFFECTS =====
 function playSuccessSound() {
     try {
         const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DvvmUSBjtv1+vEfDYELX+5zs6KOgkXZ7nq4JxODgtLoMfru2EQBDRt1qLEdjYSLKfe2OJ6OQkTb9Tsrm4cCkJ9q7hNSRMOV4/jqHGnF0Jjhh2lXOvF');
