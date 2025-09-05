@@ -2,101 +2,343 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home - Short And Sweet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short & Sweet - Advanced URL Shortener</title>
+    
+    <!-- External Dependencies -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.3/qrcode.min.js"></script>
+    
+    <!-- Local Stylesheets -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Preload for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Header Section -->
     <header>
-        <nav>
-            <h1>Short And Sweet</h1>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
-                <li><a href="how-it-works.html">How It Works</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <i class="fas fa-link brand-icon"></i>
+                    <span class="brand-text">Short & Sweet</span>
+                </div>
+                
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="#features" class="nav-link">
+                        <i class="fas fa-star"></i>
+                        <span>Features</span>
+                    </a>
+                    <a href="#stats" class="nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Analytics</span>
+                    </a>
+                    <!-- Removed Contact link because there is no #contact section -->
+                </div>
+                
+                <!-- Theme Toggle -->
+                <div class="theme-controls">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode">
+                        <i class="fas fa-sun sun-icon"></i>
+                        <i class="fas fa-moon moon-icon"></i>
+                        <div class="toggle-slider"></div>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </nav>
     </header>
-    
+
+    <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section class="hero">
-            <h2>Welcome to Short And Sweet</h2>
-            <p>Instantly shorten your URLs for easy sharing.</p>
-            <form id="url-form">
-                <input type="text" id="long-url" placeholder="Enter your long URL..." required>
-                <button type="submit">Shorten URL</button>
-            </form>
-            <div id="result" class="hidden">
-                <p>Shortened URL:</p>
-                <a id="short-url" href="#" target="_blank"></a>
+        <section class="hero-section" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="title-line">Transform Your</span>
+                        <span class="title-highlight">Long URLs</span>
+                        <span class="title-line">Into Magic</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Experience the most advanced URL shortener with real-time analytics, 
+                        QR codes, and seamless sharing capabilities.
+                    </p>
+                </div>
+                
+                <!-- URL Shortener Form -->
+                <div class="shortener-card">
+                    <form class="url-form" id="urlForm">
+                        <div class="input-container">
+                            <div class="input-wrapper">
+                                <i class="fas fa-link input-icon"></i>
+                                <input 
+                                    type="url" 
+                                    id="longUrl" 
+                                    class="url-input"
+                                    placeholder="Paste your long URL here..." 
+                                    required
+                                    spellcheck="false"
+                                    autocomplete="url"
+                                >
+                                <div class="input-validation" id="urlValidation"></div>
+                            </div>
+                            
+                            <!-- Custom Alias (Optional) -->
+                            <div class="alias-wrapper">
+                                <i class="fas fa-edit input-icon"></i>
+                                <input 
+                                    type="text" 
+                                    id="customAlias" 
+                                    class="alias-input"
+                                    placeholder="Custom alias (optional)" 
+                                    maxlength="20"
+                                >
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="shorten-btn" id="shortenBtn">
+                            <span class="btn-content">
+                                <i class="fas fa-magic btn-icon"></i>
+                                <span class="btn-text">Shorten URL</span>
+                            </span>
+                            <div class="btn-loading" id="btnLoading">
+                                <div class="loading-spinner"></div>
+                                <span>Shortening...</span>
+                            </div>
+                        </button>
+                    </form>
+                    
+                    <!-- Error Messages -->
+                    <div class="error-container" id="errorContainer"></div>
+                </div>
             </div>
         </section>
 
-        <!-- Introduction Section -->
-        <section class="introduction">
-            <h3>Why Choose Short And Sweet?</h3>
-            <p>Short And Sweet is your ultimate solution for shortening URLs, sharing them quickly, and tracking analytics. Our easy-to-use platform helps you create, manage, and analyze short links with ease.</p>
+        <!-- Results Section -->
+        <section class="results-section" id="results">
+            <div class="results-container">
+                <div class="result-card" id="resultCard">
+                    <div class="result-header">
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="result-title">Your Link is Ready!</h3>
+                        <p class="result-subtitle">Share it anywhere, track its performance</p>
+                    </div>
+                    
+                    <div class="result-content">
+                        <!-- Shortened URL Display -->
+                        <div class="short-url-container">
+                            <div class="url-display">
+                                <i class="fas fa-link url-icon"></i>
+                                <a href="#" id="shortUrl" class="short-url-link" target="_blank"></a>
+                            </div>
+                            <button class="copy-btn" id="copyBtn" title="Copy to clipboard">
+                                <i class="fas fa-copy"></i>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button class="action-btn qr-btn" id="qrBtn">
+                                <i class="fas fa-qrcode"></i>
+                                <span>QR Code</span>
+                            </button>
+                            <button class="action-btn share-btn" id="shareBtn">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share</span>
+                            </button>
+                            <button class="action-btn stats-btn" id="statsBtn">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Analytics</span>
+                            </button>
+                        </div>
+                        
+                        <!-- QR Code Display -->
+                        <div class="qr-container" id="qrContainer">
+                            <div class="qr-code" id="qrCode"></div>
+                            <p class="qr-label">Scan to access link</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Features Section -->
-        <section class="features">
-            <h3>Our Key Features</h3>
-            <ul>
-                <li>Quick and reliable URL shortening.</li>
-                <li>Advanced analytics for tracking clicks.</li>
-                <li>Customizable short URLs.</li>
-                <li>Secure and private link management.</li>
-            </ul>
+        <section class="features-section" id="features">
+            <div class="features-container">
+                <div class="section-header">
+                    <h2 class="section-title">Powerful Features</h2>
+                    <p class="section-subtitle">Everything you need for professional link management</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3 class="feature-title">Lightning Fast</h3>
+                        <p class="feature-description">
+                            Generate short URLs instantly with our optimized servers and global CDN
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h3 class="feature-title">QR Codes</h3>
+                        <p class="feature-description">
+                            Automatic QR code generation for seamless offline sharing and mobile access
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="feature-title">Real-time Analytics</h3>
+                        <p class="feature-description">
+                            Track clicks, locations, devices, and referrers with detailed insights
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Secure & Safe</h3>
+                        <p class="feature-description">
+                            All links protected with HTTPS and advanced security monitoring
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="feature-title">Custom Aliases</h3>
+                        <p class="feature-description">
+                            Create branded, memorable links that reflect your identity
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Mobile Ready</h3>
+                        <p class="feature-description">
+                            Perfect experience across all devices with responsive design
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Testimonials Section -->
-        <section class="testimonials">
-            <h3>What Our Users Say</h3>
-            <blockquote>
-                <p>"Short And Sweet has made sharing links with my team so easy! I love the analytics features."</p>
-                <footer>- Rajan
-CEO</footer>
-            </blockquote>
-            <blockquote>
-                <p>"This is the best URL shortener I've used. It's fast and the custom links are a great touch."</p>
-                <footer>- Priya S., Social Media Manager</footer>
-            </blockquote>
-        </section>
-
-        <!-- How It Works Section -->
-        <section class="how-it-works">
-            <h3>How It Works</h3>
-            <p>Using Short And Sweet is as easy as 1-2-3:</p>
-            <ol>
-                <li>Enter the long URL in the input field.</li>
-                <li>Click the 'Shorten URL' button.</li>
-                <li>Copy the generated short link and share it anywhere!</li>
-            </ol>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="faq">
-            <h3>Frequently Asked Questions</h3>
-            <h4>Is Short And Sweet free to use?</h4>
-            <p>Yes! You can use Short And Sweet free of charge. We also offer premium features for businesses and advanced users.</p>
-            <h4>How long will my shortened link stay active?</h4>
-            <p>Your shortened links are permanent unless deleted manually. We ensure they remain functional for the long term.</p>
-        </section>
-
-        <!-- Call to Action Section -->
-        <section class="cta">
-            <h3>Ready to Simplify Your Links?</h3>
-            <p>Join thousands of users who trust Short And Sweet for fast and reliable URL shortening. Start today and enjoy streamlined link sharing!</p>
-            <a href="#url-form" class="cta-button">Get Started Now</a>
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="10000">0</div>
+                        <div class="stat-label">URLs Shortened</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50000">0</div>
+                        <div class="stat-label">Clicks Tracked</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="5000">0</div>
+                        <div class="stat-label">QR Codes Generated</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="99">0</div>
+                        <div class="stat-label">Uptime %</div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Short And Sweet. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i class="fas fa-link brand-icon"></i>
+                    <span class="brand-text">Short & Sweet</span>
+                </div>
+                <p class="footer-text">
+                    Making the web more accessible, one link at a time.
+                </p>
+            </div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Support</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Short & Sweet. Made with <i class="fas fa-heart"></i> by Rajan</p>
+        </div>
     </footer>
 
+    <!-- Modal for Share Options -->
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Share Your Link</h3>
+                <button class="modal-close" id="shareModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="share-buttons">
+                    <button class="share-social-btn twitter" data-platform="twitter">
+                        <i class="fab fa-twitter"></i>
+                        <span>Twitter</span>
+                    </button>
+                    <button class="share-social-btn facebook" data-platform="facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                    </button>
+                    <button class="share-social-btn linkedin" data-platform="linkedin">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                    </button>
+                    <button class="share-social-btn whatsapp" data-platform="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </button>
+                    <button class="share-social-btn email" data-platform="email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>

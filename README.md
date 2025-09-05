@@ -1,49 +1,74 @@
-# URL
-# Short And Sweet
+# Short & Sweet - Advanced URL Shortener
 
-**Short And Sweet** is a streamlined and efficient URL shortening service designed to simplify link sharing and management. This project offers a visually appealing and user-friendly interface, along with advanced features like analytics, custom branding, and security to provide users with the best link-sharing experience.
+**GitHub Repo:** [https://github.com/RajanSita/URL](https://github.com/RajanSita/URL)  
+**Live Website:** [https://rajansita.github.io/URL/](https://rajansita.github.io/URL/)
 
-## Table of Contents
+Short & Sweet is a modern, visually stunning, and feature-rich URL shortening service. It transforms long, unwieldy links into short, shareable URLs, complete with analytics, QR code generation, custom branding, and a beautiful responsive design.
 
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [Contact](#contact)
+## 🚀 Features
 
----
+- **URL Shortening:** Instantly convert long URLs into short, easy-to-share links using Bitly API.
+- **Custom Aliases:** Personalize your short links with memorable custom aliases.
+- **Real-time Analytics:** Track clicks, QR code scans, and more with animated stats.
+- **QR Code Generation:** Automatic QR code creation for every shortened link.
+- **Social Sharing:** Share your links directly to Twitter, Facebook, LinkedIn, WhatsApp, or Email.
+- **Dark Mode:** Toggle between light and dark themes for optimal viewing.
+- **Mobile Friendly:** Fully responsive design for all devices.
+- **Animated UI:** Particle backgrounds, smooth transitions, and interactive feedback.
+- **Accessibility:** Keyboard shortcuts, high-contrast mode, and reduced motion support.
+- **Offline Detection:** Notifies users of network status changes.
 
-## Features
+## 🗂️ Project Structure
 
-- **URL Shortening**: Convert lengthy URLs into short, easy-to-share links.
-- **Analytics**: Track link clicks and other metrics to understand user engagement.
-- **Custom Branding**: Customize the shortened URLs to reflect your brand.
-- **Security**: Each link is secured to prevent unauthorized access.
-- **Responsive Design**: Fully functional across different screen sizes and devices.
+```
+index.html       # Main landing page and UI
+styles.css       # Custom styles and responsive design
+script.js        # All interactivity, API calls, and animations
+README.md        # Project documentation
+```
 
-## Project Structure
+## 🛠️ Technologies Used
 
-The project consists of the following HTML pages, each with specific purposes and functions:
+- **HTML5**: Semantic markup for structure
+- **CSS3**: Custom properties, animations, and responsive layouts
+- **JavaScript**: All logic, API integration, and DOM manipulation
+- **Bitly API**: For URL shortening
+- **Font Awesome**: Iconography
+- **QRCode.js**: QR code generation
 
-- `index.html`: The main landing page with details on the service.
-- `features.html`: Lists all the features of Short And Sweet.
-- `how-it-works.html`: Explains the URL shortening process to users.
-- `about-us.html`: Contains information about the team, mission, and values.
-- `contact.html`: Provides a contact form and details for user inquiries.
+## ⚡ Getting Started
 
-## Technologies Used
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/RajanSita/URL.git
+    cd URL
+    ```
 
-- **HTML5**: For creating the structure of the pages.
-- **CSS3**: Styling and layout (responsive design).
-- **JavaScript**: Front-end interactivity and functionality.
-- **Bootstrap**: Used for enhancing the UI and ensuring responsive design.
+2. **Open `index.html` in your browser**
+    - No build step required; all dependencies are loaded via CDN.
 
-## Getting Started
+## ✨ Usage
 
-To get a local copy of this project up and running, follow these steps:
+1. Paste your long URL into the input field.
+2. (Optional) Enter a custom alias.
+3. Click **Shorten URL**.
+4. Copy your new short link, view analytics, or share via social media.
+5. Scan or download the QR code for offline sharing.
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/RajanSita/URL.git
+## 🖼️ Screenshots
+
+![Short & Sweet UI](https://raw.githubusercontent.com/RajanSita/URL/main/screenshot.png)
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+## 📬 Contact
+
+- **Author:** Rajan Sita
+- **GitHub:** [https://github.com/RajanSita](https://github.com/RajanSita)
+- **Twitter:** [@RajanSita](https://twitter.com/RajanSita)
