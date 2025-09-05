@@ -55,10 +55,6 @@ README.md        # Project documentation
 4. Copy your new short link, view analytics, or share via social media.
 5. Scan or download the QR code for offline sharing.
 
-## 🖼️ Screenshots
-
-![Short & Sweet UI](https://raw.githubusercontent.com/RajanSita/URL/main/screenshot.png)
-
 ## 🤝 Contributing
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
