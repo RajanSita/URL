@@ -1,7 +1,7 @@
 # Short & Sweet - Advanced URL Shortener
 
-**GitHub Repo:** [https://github.com/RajanSita/URL](https://github.com/RajanSita/URL)  
-**Live Website:** [https://rajansita.github.io/URL/](https://rajansita.github.io/URL/)
+**GitHub Repo:** [Repo Link](https://github.com/RajanSita/URL)  
+**Live Website:** [URL Shortner](https://rajansita.github.io/URL/)
 
 Short & Sweet is a modern, visually stunning, and feature-rich URL shortening service. It transforms long, unwieldy links into short, shareable URLs, complete with analytics, QR code generation, custom branding, and a beautiful responsive design.
 
