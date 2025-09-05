@@ -67,4 +67,4 @@ This project is licensed under the MIT License.
 
 - **Author:** Rajan Sita
 - **GitHub:** [RajanSita](https://github.com/RajanSita)
-- **Twitter:** [@RRajanSita051291](https://x.com/RajanSita051291)
+- **Twitter:** [@RajanSita051291](https://x.com/RajanSita051291)
